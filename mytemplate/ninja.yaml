@@ -49,4 +49,8 @@ definitions:
         - "伊賀"
         - "甲賀"
         - "はぐれ"
+        x-enum-names:
+          - Iga
+          - Kouga
+          - Alone
 

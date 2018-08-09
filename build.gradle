@@ -10,30 +10,24 @@ repositories {
 dependencies {
   // Add dependency for Swagger Codegen CLI
   swaggerCodegen 'io.swagger:swagger-codegen-cli:2.3.1'
+  // groovyのクラスファイルをクラスパスに追加
+  swaggerCodegen files('build/classes/main/')
+  swaggerCodegen localGroovy()
+  // groovyコンパイル用の設定
+  compile 'io.swagger:swagger-codegen-cli:2.3.1'
+  compile localGroovy()
 }
-
-//ロジック記述ファイルの場所
-sourceSets.main.groovy.srcDirs=['mytemplate/logic']
 
 swaggerSources {
-  // petstoreはサンプルプロジェクト名
-  /*
-  petstore {
-    inputFile = file('petstore.yaml') //swagger定義
-    code {
-      language = 'MySwaggerLogic' //後ほど作成するロジッククラス名
-      configFile = file('config.json')
-    }
-  }
-  */
-
-  //example
   example{
-    inputFile = file('swagger.json') //swagger定義
+    inputFile = file('mytemplate/ninja.yaml') //swagger定義
     code {
-      language = 'spring' 
-      configFile = file('config.json')
+      language = 'MySwaggerLogic' 
+      templateDir = file('mytemplate/template/')
     }
-
   }
 }
+// swaggerSourceの前にgroovyをコンパイル
+swaggerSources.example.code.dependsOn compileGroovy 
+//ロジック記述ファイルの場所
+sourceSets.main.groovy.srcDirs=['mytemplate/logic']

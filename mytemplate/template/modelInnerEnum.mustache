@@ -7,6 +7,7 @@
   public enum {{#datatypeWithEnum}}{{{.}}}{{/datatypeWithEnum}}{{^datatypeWithEnum}}{{classname}}{{/datatypeWithEnum}} {
     {{#allowableValues}}
       {{#enumVars}}
+      // こんなこめんとをいれました
     {{{name}}}({{{value}}}){{^-last}},
     {{/-last}}{{#-last}};{{/-last}}
       {{/enumVars}}
