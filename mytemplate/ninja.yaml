@@ -1,0 +1,52 @@
+swagger: "2.0"
+info:
+  description: "test client"
+  version: "1.0.0"
+  title: "MySample"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+basePath: "/test"
+
+schemes:
+- "https"
+- "http"
+paths:
+  /ninja:
+    post:
+      tags:
+      - "ninja"
+      operationId: "postNinja"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        required: true
+        schema:
+          $ref: "#/definitions/Person"
+      responses:
+        405:
+          description: "Invalid input"
+definitions:
+  Person:
+    type: "object"
+    required:
+    - "name"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      name:
+        type: "string"
+        example: "doggie"
+      group:
+        type: "string"
+        description: "pet status in the store"
+        enum:
+        - "伊賀"
+        - "甲賀"
+        - "はぐれ"
+
