@@ -1,0 +1,39 @@
+plugins {
+  id 'groovy'  // groovyでロジックを記述する際に使用
+  id 'org.hidetake.swagger.generator' version '2.12.0'
+}
+
+repositories {
+  jcenter()
+}
+
+dependencies {
+  // Add dependency for Swagger Codegen CLI
+  swaggerCodegen 'io.swagger:swagger-codegen-cli:2.3.1'
+}
+
+//ロジック記述ファイルの場所
+sourceSets.main.groovy.srcDirs=['mytemplate/logic']
+
+swaggerSources {
+  // petstoreはサンプルプロジェクト名
+  /*
+  petstore {
+    inputFile = file('petstore.yaml') //swagger定義
+    code {
+      language = 'MySwaggerLogic' //後ほど作成するロジッククラス名
+      configFile = file('config.json')
+    }
+  }
+  */
+
+  //example
+  example{
+    inputFile = file('swagger.json') //swagger定義
+    code {
+      language = 'spring' 
+      configFile = file('config.json')
+    }
+
+  }
+}
